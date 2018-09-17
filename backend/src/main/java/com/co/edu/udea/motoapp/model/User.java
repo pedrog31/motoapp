@@ -7,10 +7,10 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class User {
-
+	
 	@Id
-	private ObjectId _uid;
-
+	private String _uid;
+	
 	private String name;
 	private String lastName;
 	private String email;
@@ -19,14 +19,13 @@ public class User {
 	private Date birthdate;
 	private ArrayList<UserMotorcycle> motorcycles;
 	private ArrayList<ObjectId> groups;
-	private ArrayList<ObjectId> trips;
 	private long timeStamp;
-	
-	public ObjectId get_uid() {
+
+	public String get_uid() {
 		return _uid;
 	}
 
-	public void set_uid(ObjectId _uid) {
+	public void set_uid(String _uid) {
 		this._uid = _uid;
 	}
 
@@ -94,20 +93,12 @@ public class User {
 		this.groups = groups;
 	}
 
-	public ArrayList<ObjectId> getTrips() {
-		return trips;
-	}
-
-	public void setTrips(ArrayList<ObjectId> trips) {
-		this.trips = trips;
-	}
-
-	public long getCreated() {
+	public long getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setCreated(long created) {
-		this.timeStamp = created;
+	public void setTimeStamp(long timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
 }

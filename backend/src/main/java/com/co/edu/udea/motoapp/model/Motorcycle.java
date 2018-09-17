@@ -3,14 +3,19 @@ package com.co.edu.udea.motoapp.model;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Motorcycle {
 	@Id
+	@JsonSerialize(using=ObjectIdSerializer.class)
 	private ObjectId _id;
 	
 	private String name;
 	private String brand;
 	private String cyl;
 	private String uri;
+	
+	
 	
 	public ObjectId get_id() {
 		return _id;

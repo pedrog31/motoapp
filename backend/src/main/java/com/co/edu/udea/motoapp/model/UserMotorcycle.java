@@ -7,21 +7,11 @@ import org.springframework.data.annotation.Id;
 
 public class UserMotorcycle {
 	@Id
-	private ObjectId _id;
-	
 	private ObjectId _idMotorcycle;
 	private Date soat;
 	private Date tm;
 	private String color;
 	private int km;
-
-	public ObjectId get_id() {
-		return _id;
-	}
-
-	public void set_id(ObjectId _id) {
-		this._id = _id;
-	}
 
 	public ObjectId get_idMotorcycle() {
 		return _idMotorcycle;
