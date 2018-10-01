@@ -5,8 +5,11 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class UserMotorcycle {
 	@Id
+	@JsonSerialize(using=ObjectIdSerializer.class)
 	private ObjectId _idMotorcycle;
 	private Date soat;
 	private Date tm;

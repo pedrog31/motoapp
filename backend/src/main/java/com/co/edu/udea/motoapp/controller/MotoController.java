@@ -62,7 +62,7 @@ public class MotoController {
 			  response.setStatus(HttpStatus.OK);
 		  }else {
 			  response.setTitle("ERROR");
-			  response.setMessage("Ruta no encontrada");
+			  response.setMessage("Motocicleta no encontrada");
 			  response.setStatus(HttpStatus.CONFLICT);
 		  }
 		  return response;

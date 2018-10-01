@@ -17,6 +17,8 @@ public class User {
 	private String cellphone;
 	private String uriPhoto;
 	private Date birthdate;
+	private float nivel;
+	private ArrayList<ObjectId> friends;
 	private ArrayList<UserMotorcycle> motorcycles;
 	private ArrayList<ObjectId> groups;
 	private long timeStamp;
@@ -99,6 +101,22 @@ public class User {
 
 	public void setTimeStamp(long timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+
+	public float getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(float nivel) {
+		this.nivel = nivel;
+	}
+
+	public ArrayList<ObjectId> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(ArrayList<ObjectId> friends) {
+		this.friends = friends;
 	}
 
 }
