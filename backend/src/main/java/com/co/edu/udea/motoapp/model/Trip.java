@@ -21,6 +21,7 @@ public class Trip {
 	private String level;
 	private int distance;
 	private float score;
+	private int scoreCount;
 	private ArrayList<String> uids;
 	
 	public float getScore() {
@@ -94,6 +95,12 @@ public class Trip {
 	}
 	public void setUids(ArrayList<String> uids) {
 		this.uids = uids;
+	}
+	public int getScoreCount() {
+		return scoreCount;
+	}
+	public void setScoreCount(int scoreCount) {
+		this.scoreCount = scoreCount;
 	}
 	
 }

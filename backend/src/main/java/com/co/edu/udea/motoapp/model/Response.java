@@ -6,7 +6,8 @@ public class Response {
 	private HttpStatus status;
 	private String title;
 	private String message;
-	private Integer code;
+	private Object data;
+	
 	public HttpStatus getStatus() {
 		return status;
 	}
@@ -25,10 +26,10 @@ public class Response {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public Integer getCode() {
-		return code;
+	public Object getData() {
+		return data;
 	}
-	public void setCode(Integer code) {
-		this.code = code;
+	public void setData(Object data) {
+		this.data = data;
 	}
 }
