@@ -15,6 +15,7 @@ public class UserMotorcycle {
 	private Date tm;
 	private String color;
 	private int km;
+	private Motorcycle moto;
 
 	public ObjectId get_idMotorcycle() {
 		return _idMotorcycle;
@@ -54,5 +55,13 @@ public class UserMotorcycle {
 
 	public void setKm(int km) {
 		this.km = km;
+	}
+
+	public Motorcycle getMoto() {
+		return moto;
+	}
+
+	public void setMoto(Motorcycle moto) {
+		this.moto = moto;
 	}
 }

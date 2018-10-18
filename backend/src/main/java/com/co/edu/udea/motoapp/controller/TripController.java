@@ -23,61 +23,62 @@ import com.co.edu.udea.motoapp.repositories.TripRepository;
 @RestController
 @RequestMapping("/trips")
 public class TripController {
-	  @Autowired
-	  private TripRepository repository;
-	 
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "", method = RequestMethod.GET)
-	  public List<Trip> getAllTrips() {
+	@Autowired
+	private TripRepository repository;
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public List<Trip> getAllTrips() {
 		return repository.findAll();
-	  }
-	  
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "/public", method = RequestMethod.GET)
-	  public List<Trip> getPublicTrips() {
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/public", method = RequestMethod.GET)
+	public List<Trip> getPublicTrips() {
 		return repository.findBytripPublic(true);
-	  }
-	  
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	  public Trip getTripById(@PathVariable() ObjectId id) {
-	    return repository.findBy_id(id);
-	  }
-	 
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "", method = RequestMethod.PUT)
-	  public void modifyTripBId(@Valid @RequestBody Trip trip) {
-	    repository.save(trip);
-	  }
-	  
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "/user/{uid}", method = RequestMethod.GET)
-	  public List<Trip> getTripsBelongToUser(@PathVariable() String uid) {
-		  return repository.findByUids(uid);
-	  }
-	 
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "", method = RequestMethod.POST)
-	  public Trip createTrip(@Valid @RequestBody Trip trip) {
-	    repository.save(trip);
-	    return trip;
-	  }
-	 
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	  public Response deleteTrip(@PathVariable() ObjectId id) {
-		  Response response = new Response();
-		  Trip trip = repository.findBy_id(id);
-		  if (trip != null) {
-			  repository.delete(trip);
-			  response.setTitle("ok");
-			  response.setMessage("Ruta eliminada");
-			  response.setStatus(HttpStatus.OK);
-		  }else {
-			  response.setTitle("ERROR");
-			  response.setMessage("Ruta no encontrada");
-			  response.setStatus(HttpStatus.CONFLICT);
-		  }
-		  return response;
-	  }
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public Trip getTripById(@PathVariable() ObjectId id) {
+		return repository.findBy_id(id);
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "", method = RequestMethod.PUT)
+	public void modifyTripBId(@Valid @RequestBody Trip trip) {
+		repository.save(trip);
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/user/{uid}", method = RequestMethod.GET)
+	public List<Trip> getTripsBelongToUser(@PathVariable() String uid) {
+		return repository.findByUids(uid);
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public Trip createTrip(@Valid @RequestBody Trip trip) {
+		trip.set_id(new ObjectId());
+		repository.save(trip);
+		return trip;
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public Response deleteTrip(@PathVariable() ObjectId id) {
+		Response response = new Response();
+		Trip trip = repository.findBy_id(id);
+		if (trip != null) {
+			repository.delete(trip);
+			response.setTitle("ok");
+			response.setMessage("Ruta eliminada");
+			response.setStatus(HttpStatus.OK);
+		} else {
+			response.setTitle("ERROR");
+			response.setMessage("Ruta no encontrada");
+			response.setStatus(HttpStatus.CONFLICT);
+		}
+		return response;
+	}
 }

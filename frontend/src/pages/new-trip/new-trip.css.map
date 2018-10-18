@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACI,kBAAK;EACD,MAAM,EAAE,GAAG;AAEf,wBAAW;EACP,MAAM,EAAE,GAAG;EACX,KAAK,EAAE,GAAG;EACV,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM",
+"sources": ["new-trip.scss"],
+"names": [],
+"file": "new-trip.css"
+}

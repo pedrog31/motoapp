@@ -64,18 +64,7 @@ public class User {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
-	public float getLevel() {
-		return level;
-	}
-	public void setLevel(float level) {
-		this.level = level;
-	}
-	public ArrayList<String> getFriends() {
-		return friends;
-	}
-	public void setFriends(ArrayList<String> friends) {
-		this.friends = friends;
-	}
+	
 	public ArrayList<UserMotorcycle> getMotorcycles() {
 		return motorcycles;
 	}
@@ -95,6 +84,21 @@ public class User {
 		this.timeStamp = timeStamp;
 	}
 
-	
+
+	public float getLevel() {
+		return level;
+	}
+
+	public void setLevel(float level) {
+		this.level = level;
+	}
+
+	public ArrayList<String> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(ArrayList<String> friends) {
+		this.friends = friends;
+	}
 
 }

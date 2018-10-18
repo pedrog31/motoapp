@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "772050837774",
+    "firebase_url": "https://motoapp-b9507.firebaseio.com",
+    "project_id": "motoapp-b9507",
+    "storage_bucket": "motoapp-b9507.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772050837774:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772050837774-i7trqohbgigi0vap9r64kp2m34joa08s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "049d6fac463010569c7a61c4c8dbe72b29398a53"
+          }
+        },
+        {
+          "client_id": "772050837774-cokjgvcnn0j8gc9krhsf3j06pqbq1la3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMV-OyGA6zXit0t8kGJwUOx7-SNQlwN4w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772050837774-cokjgvcnn0j8gc9krhsf3j06pqbq1la3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
