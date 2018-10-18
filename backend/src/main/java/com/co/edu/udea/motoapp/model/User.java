@@ -17,8 +17,8 @@ public class User {
 	private String cellphone;
 	private String uriPhoto;
 	private Date birthdate;
-	private float nivel;
-	private ArrayList<ObjectId> friends;
+	private float level;
+	private ArrayList<String> friends;
 	private ArrayList<UserMotorcycle> motorcycles;
 	private ArrayList<ObjectId> groups;
 	private long timeStamp;
@@ -103,19 +103,19 @@ public class User {
 		this.timeStamp = timeStamp;
 	}
 
-	public float getNivel() {
-		return nivel;
+	public float getLevel() {
+		return level;
 	}
 
-	public void setNivel(float nivel) {
-		this.nivel = nivel;
+	public void setLevel(float level) {
+		this.level = level;
 	}
 
-	public ArrayList<ObjectId> getFriends() {
+	public ArrayList<String> getFriends() {
 		return friends;
 	}
 
-	public void setFriends(ArrayList<ObjectId> friends) {
+	public void setFriends(ArrayList<String> friends) {
 		this.friends = friends;
 	}
 

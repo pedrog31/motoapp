@@ -23,24 +23,23 @@ public class Trip {
 	private float score;
 	private int scoreCount;
 	private ArrayList<String> uids;
-	
-	public float getScore() {
-		return score;
+	public ObjectId get_id() {
+		return _id;
 	}
-	public void setScore(float score) {
-		this.score = score;
+	public void set_id(ObjectId _id) {
+		this._id = _id;
 	}
-	public int getDistance() {
-		return distance;
+	public String getName() {
+		return name;
 	}
-	public void setDistance(int distance) {
-		this.distance = distance;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getNivel() {
-		return level;
+	public String getDescription() {
+		return description;
 	}
-	public void setNivel(String nivel) {
-		this.level = nivel;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getUrlPicture() {
 		return urlPicture;
@@ -66,35 +65,23 @@ public class Trip {
 	public void setTripPublic(boolean tripPublic) {
 		this.tripPublic = tripPublic;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public ObjectId get_id() {
-		return _id;
-	}
-	public void set_id(ObjectId _id) {
-		this._id = _id;
-	}
 	public String getLevel() {
 		return level;
 	}
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	public ArrayList<String> getUids() {
-		return uids;
+	public int getDistance() {
+		return distance;
 	}
-	public void setUids(ArrayList<String> uids) {
-		this.uids = uids;
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+	public float getScore() {
+		return score;
+	}
+	public void setScore(float score) {
+		this.score = score;
 	}
 	public int getScoreCount() {
 		return scoreCount;
@@ -102,5 +89,13 @@ public class Trip {
 	public void setScoreCount(int scoreCount) {
 		this.scoreCount = scoreCount;
 	}
+	public ArrayList<String> getUids() {
+		return uids;
+	}
+	public void setUids(ArrayList<String> uids) {
+		this.uids = uids;
+	}
+	
+	
 	
 }

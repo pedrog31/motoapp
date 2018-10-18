@@ -23,48 +23,54 @@ import com.co.edu.udea.motoapp.repositories.MotoRepository;
 @RequestMapping("/motorcycles")
 public class MotoController {
 	@Autowired
-	  private MotoRepository repository;
-	 
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "", method = RequestMethod.GET)
-	  public List<Motorcycle> getAllMotorcycles() {
+	private MotoRepository repository;
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public List<Motorcycle> getAllMotorcycles() {
 		return repository.findAll();
-	  }
-	  
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	  public Motorcycle getMotorcycleById(@PathVariable() ObjectId id) {
-	    return repository.findBy_id(id);
-	  }
-	 
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "", method = RequestMethod.PUT)
-	  public void modifyMotorcycleBId(@Valid @RequestBody Motorcycle motorcycle) {
-	    repository.save(motorcycle);
-	  }
-	 
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "", method = RequestMethod.POST)
-	  public Motorcycle createMotorcycle(@Valid @RequestBody Motorcycle motorcycle) {
-	    repository.save(motorcycle);
-	    return motorcycle;
-	  }
-	 
-	  @CrossOrigin(origins = "*")
-	  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	  public Response deleteMotorcycle(@PathVariable() ObjectId id) {
-		  Response response = new Response();
-		  Motorcycle motorcycle = repository.findBy_id(id);
-		  if (motorcycle != null) {
-			  repository.delete(motorcycle);
-			  response.setTitle("ok");
-			  response.setMessage("Ruta eliminada");
-			  response.setStatus(HttpStatus.OK);
-		  }else {
-			  response.setTitle("ERROR");
-			  response.setMessage("Motocicleta no encontrada");
-			  response.setStatus(HttpStatus.CONFLICT);
-		  }
-		  return response;
-	  }
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public Motorcycle getMotorcycleById(@PathVariable() ObjectId id) {
+		return repository.findBy_id(id);
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "", method = RequestMethod.PUT)
+	public void modifyMotorcycleBId(@Valid @RequestBody Motorcycle motorcycle) {
+		repository.save(motorcycle);
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public Motorcycle createMotorcycle(@Valid @RequestBody Motorcycle motorcycle) {
+		repository.save(motorcycle);
+		return motorcycle;
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{query}", method = RequestMethod.GET)
+	public List<Motorcycle> searchMotorcycles(@PathVariable() String query) {
+		return repository.findByNameContainingIgnoreCase(query);
+	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public Response deleteMotorcycle(@PathVariable() ObjectId id) {
+		Response response = new Response();
+		Motorcycle motorcycle = repository.findBy_id(id);
+		if (motorcycle != null) {
+			repository.delete(motorcycle);
+			response.setTitle("ok");
+			response.setMessage("Ruta eliminada");
+			response.setStatus(HttpStatus.OK);
+		} else {
+			response.setTitle("ERROR");
+			response.setMessage("Motocicleta no encontrada");
+			response.setStatus(HttpStatus.CONFLICT);
+		}
+		return response;
+	}
 }
