@@ -8,6 +8,7 @@ public class Advise {
 	
 	private String _uid;
 	private String message;
+	private String urlPicture;
 	private int score;
 	@JsonSerialize(using=ObjectIdSerializer.class)
 	private ObjectId _tripId;
@@ -35,5 +36,11 @@ public class Advise {
 	}
 	public void set_tripId(ObjectId _tripId) {
 		this._tripId = _tripId;
+	}
+	public String getUrlPicture() {
+		return urlPicture;
+	}
+	public void setUrlPicture(String urlPicture) {
+		this.urlPicture = urlPicture;
 	}
 }

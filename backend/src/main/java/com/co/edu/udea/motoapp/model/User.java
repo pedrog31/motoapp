@@ -22,6 +22,7 @@ public class User {
 	private ArrayList<UserMotorcycle> motorcycles;
 	private ArrayList<ObjectId> groups;
 	private long timeStamp;
+	
 	public String get_uid() {
 		return _uid;
 	}

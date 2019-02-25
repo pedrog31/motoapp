@@ -1,6 +1,5 @@
 package com.co.edu.udea.motoapp.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.co.edu.udea.motoapp.model.Response;
 import com.co.edu.udea.motoapp.model.Trip;
-import com.co.edu.udea.motoapp.model.User;
 import com.co.edu.udea.motoapp.repositories.TripRepository;
 
 @RestController

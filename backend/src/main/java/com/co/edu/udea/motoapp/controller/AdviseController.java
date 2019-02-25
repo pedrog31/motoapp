@@ -24,7 +24,7 @@ import com.co.edu.udea.motoapp.repositories.TripRepository;
 @RequestMapping("/trips/advises")
 public class AdviseController {
 	@Autowired
-	private AdviseRepository repository;
+	private AdviseRepository adviseRepository;
 	
 	@Autowired
 	private TripRepository tripRepository;
@@ -34,7 +34,7 @@ public class AdviseController {
 	public Response getAdvisesByTrip(@PathVariable() String id) {
 		Response response = new Response();
 		try {
-			List<Advise> advices = repository.findBy_tripId(new ObjectId(id));
+			List<Advise> advices = adviseRepository.findBy_tripId(new ObjectId(id));
 			response.setData(advices);
 			response.setStatus(HttpStatus.OK);
 			return response;
@@ -50,7 +50,7 @@ public class AdviseController {
 	public Response getAdvisesByUser(@PathVariable() String uid) {
 		Response response = new Response();
 		try {
-			List<Advise> advices = repository.findBy_uid(uid);
+			List<Advise> advices = adviseRepository.findBy_uid(uid);
 			response.setData(advices);
 			response.setStatus(HttpStatus.OK);
 			return response;
@@ -64,11 +64,12 @@ public class AdviseController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Advise createAdvise(@Valid @RequestBody Advise advise) {
-		repository.save(advise);
+		adviseRepository.save(advise);
 		Trip trip  = tripRepository.findBy_id(advise.get_tripId());
 		float score = trip.getScore() * trip.getScoreCount() + advise.getScore();
 		trip.setScoreCount(trip.getScoreCount() + 1);
 		trip.setScore(score / trip.getScoreCount());
+		this.tripRepository.save(trip);
 		return advise;
 	}
 }

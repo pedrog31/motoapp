@@ -1,6 +1,7 @@
 package com.co.edu.udea.motoapp.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -15,8 +16,7 @@ public class Trip {
 	private String name;
 	private String description;
 	private String urlPicture;
-	private Location start;
-	private Location end;
+	private List<Location> breakPoints;
 	private boolean tripPublic;
 	private String level;
 	private int distance;
@@ -47,17 +47,11 @@ public class Trip {
 	public void setUrlPicture(String urlPicture) {
 		this.urlPicture = urlPicture;
 	}
-	public Location getStart() {
-		return start;
+	public List<Location> getBreakPoints() {
+		return breakPoints;
 	}
-	public void setStart(Location start) {
-		this.start = start;
-	}
-	public Location getEnd() {
-		return end;
-	}
-	public void setEnd(Location end) {
-		this.end = end;
+	public void setBreakPoints(List<Location> breakPoints) {
+		this.breakPoints = breakPoints;
 	}
 	public boolean isTripPublic() {
 		return tripPublic;
@@ -94,8 +88,5 @@ public class Trip {
 	}
 	public void setUids(ArrayList<String> uids) {
 		this.uids = uids;
-	}
-	
-	
-	
+	}	
 }
