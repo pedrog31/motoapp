@@ -1,7 +1,0 @@
-{
-  "name": "motoApp",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
