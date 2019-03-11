@@ -2,24 +2,24 @@ package com.co.edu.udea.motoapp.model;
 
 public class Location {
 	private String name;
-	private long latitude;
-	private long longitude;
+	private Double latitude;
+	private Double longitude;
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public long getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(long latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
-	public long getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(long longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 	
