@@ -19,7 +19,7 @@ import com.co.edu.udea.motoapp.service.FileService;
 public class FileServiceImpl implements FileService {
 
 	Logger log = Logger.getLogger(this.getClass().getName());
-	public static final String UPLOAD_FILE_SERVER = "/Archivos-Adjuntos/";
+	public static final String UPLOAD_FILE_SERVER = "src/main/resources/Archivos-Adjuntos";
 	private Path rootLocation;
 
 	public FileServiceImpl() {
