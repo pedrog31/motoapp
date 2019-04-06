@@ -16,13 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.co.edu.udea.motoapp.model.Response;
 import com.co.edu.udea.motoapp.model.Trip;
+import com.co.edu.udea.motoapp.model.User;
 import com.co.edu.udea.motoapp.repositories.TripRepository;
+import com.co.edu.udea.motoapp.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/trips")
 public class TripController {
 	@Autowired
 	private TripRepository repository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "", method = RequestMethod.GET)
@@ -39,12 +44,12 @@ public class TripController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Trip getTripById(@PathVariable() ObjectId id) {
-		return repository.findBy_id(id);
+		return repository.findById(id);
 	}
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "", method = RequestMethod.PUT)
-	public void modifyTripBId(@Valid @RequestBody Trip trip) {
+	public void modifyTrip(@Valid @RequestBody Trip trip) {
 		repository.save(trip);
 	}
 
@@ -57,8 +62,13 @@ public class TripController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Trip createTrip(@Valid @RequestBody Trip trip) {
-		trip.set_id(new ObjectId());
+		trip.setId(new ObjectId());
 		repository.save(trip);
+		if (!trip.getUids().isEmpty()) {
+			User user = userRepository.findByUid(trip.getUids().get(0));
+			user.getChallenges().add("TRIP1");
+			userRepository.save(user);
+		}
 		return trip;
 	}
 
@@ -66,7 +76,7 @@ public class TripController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Response deleteTrip(@PathVariable() ObjectId id) {
 		Response response = new Response();
-		Trip trip = repository.findBy_id(id);
+		Trip trip = repository.findById(id);
 		if (trip != null) {
 			repository.delete(trip);
 			response.setTitle("ok");

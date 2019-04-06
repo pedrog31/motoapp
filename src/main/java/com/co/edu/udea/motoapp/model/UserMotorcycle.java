@@ -10,19 +10,19 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 public class UserMotorcycle {
 	@Id
 	@JsonSerialize(using=ObjectIdSerializer.class)
-	private ObjectId _idMotorcycle;
+	private ObjectId idMotorcycle;
 	private Date soat;
 	private Date tm;
 	private String color;
 	private int km;
 	private Motorcycle moto;
 
-	public ObjectId get_idMotorcycle() {
-		return _idMotorcycle;
+	public ObjectId getIdMotorcycle() {
+		return idMotorcycle;
 	}
 
-	public void set_idMotorcycle(ObjectId _idMotorcycle) {
-		this._idMotorcycle = _idMotorcycle;
+	public void setIdMotorcycle(ObjectId idMotorcycle) {
+		this.idMotorcycle = idMotorcycle;
 	}
 
 	public Date getSoat() {
