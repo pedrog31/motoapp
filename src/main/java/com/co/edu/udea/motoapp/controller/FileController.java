@@ -46,6 +46,7 @@ public class FileController {
 			return new ResponseEntity<>(response, responseHeaders, HttpStatus.ACCEPTED);
 		} catch (Exception ex) {
 			String content = "<header><h2><span>Error guardando archivo</span></h2></header>";
+			ex.printStackTrace();
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.setContentType(MediaType.TEXT_HTML);
 			return new ResponseEntity<>(content, responseHeaders, HttpStatus.NOT_FOUND);
