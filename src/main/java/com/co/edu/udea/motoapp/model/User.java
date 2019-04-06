@@ -1,7 +1,8 @@
 package com.co.edu.udea.motoapp.model;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -9,7 +10,7 @@ import org.springframework.data.annotation.Id;
 public class User {
 	
 	@Id
-	private String _uid;
+	private String uid;
 	
 	private String name;
 	private String lastName;
@@ -18,16 +19,17 @@ public class User {
 	private String uriPhoto;
 	private Date birthdate;
 	private float level;
-	private ArrayList<String> friends;
-	private ArrayList<UserMotorcycle> motorcycles;
-	private ArrayList<ObjectId> groups;
+	private List<String> friends;
+	private List<UserMotorcycle> motorcycles;
+	private Set<String> challenges;
+	private List<ObjectId> groups;
 	private long timeStamp;
 	
-	public String get_uid() {
-		return _uid;
+	public String getUid() {
+		return uid;
 	}
-	public void set_uid(String _uid) {
-		this._uid = _uid;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	public String getName() {
 		return name;
@@ -65,17 +67,34 @@ public class User {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
-	
-	public ArrayList<UserMotorcycle> getMotorcycles() {
+	public float getLevel() {
+		return level;
+	}
+	public void setLevel(float level) {
+		this.level = level;
+	}
+	public List<String> getFriends() {
+		return friends;
+	}
+	public void setFriends(List<String> friends) {
+		this.friends = friends;
+	}
+	public List<UserMotorcycle> getMotorcycles() {
 		return motorcycles;
 	}
-	public void setMotorcycles(ArrayList<UserMotorcycle> motorcycles) {
+	public void setMotorcycles(List<UserMotorcycle> motorcycles) {
 		this.motorcycles = motorcycles;
 	}
-	public ArrayList<ObjectId> getGroups() {
+	public Set<String> getChallenges() {
+		return challenges;
+	}
+	public void setChallenges(Set<String> challenges) {
+		this.challenges = challenges;
+	}
+	public List<ObjectId> getGroups() {
 		return groups;
 	}
-	public void setGroups(ArrayList<ObjectId> groups) {
+	public void setGroups(List<ObjectId> groups) {
 		this.groups = groups;
 	}
 	public long getTimeStamp() {
@@ -84,22 +103,4 @@ public class User {
 	public void setTimeStamp(long timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-
-
-	public float getLevel() {
-		return level;
-	}
-
-	public void setLevel(float level) {
-		this.level = level;
-	}
-
-	public ArrayList<String> getFriends() {
-		return friends;
-	}
-
-	public void setFriends(ArrayList<String> friends) {
-		this.friends = friends;
-	}
-
 }

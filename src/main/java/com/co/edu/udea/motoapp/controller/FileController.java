@@ -1,10 +1,5 @@
 package com.co.edu.udea.motoapp.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

@@ -34,7 +34,7 @@ public class AdviseController {
 	public Response getAdvisesByTrip(@PathVariable() String id) {
 		Response response = new Response();
 		try {
-			List<Advise> advices = adviseRepository.findBy_tripId(new ObjectId(id));
+			List<Advise> advices = adviseRepository.findByTripId(new ObjectId(id));
 			response.setData(advices);
 			response.setStatus(HttpStatus.OK);
 			return response;
@@ -50,7 +50,7 @@ public class AdviseController {
 	public Response getAdvisesByUser(@PathVariable() String uid) {
 		Response response = new Response();
 		try {
-			List<Advise> advices = adviseRepository.findBy_uid(uid);
+			List<Advise> advices = adviseRepository.findByUid(uid);
 			response.setData(advices);
 			response.setStatus(HttpStatus.OK);
 			return response;
@@ -65,7 +65,7 @@ public class AdviseController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Advise createAdvise(@Valid @RequestBody Advise advise) {
 		adviseRepository.save(advise);
-		Trip trip  = tripRepository.findBy_id(advise.get_tripId());
+		Trip trip  = tripRepository.findById(advise.getTripId());
 		float score = trip.getScore() * trip.getScoreCount() + advise.getScore();
 		trip.setScoreCount(trip.getScoreCount() + 1);
 		trip.setScore(score / trip.getScoreCount());

@@ -4,5 +4,5 @@ import org.springframework.data.annotation.Id;
 
 public class Group {
 	@Id
-	private String _id;
+	private String id;
 }

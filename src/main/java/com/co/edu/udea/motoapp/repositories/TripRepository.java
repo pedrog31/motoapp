@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.co.edu.udea.motoapp.model.Trip;
 
 public interface TripRepository extends MongoRepository<Trip, String> {
-	Trip findBy_id(ObjectId _id);
+	Trip findById(ObjectId id);
 	
 	List<Trip> findByName(String name);
 	

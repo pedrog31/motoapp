@@ -8,15 +8,17 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.co.edu.udea.motoapp.model.Motorcycle;
 import com.co.edu.udea.motoapp.model.Response;
-import com.co.edu.udea.motoapp.model.Trip;
 import com.co.edu.udea.motoapp.repositories.MotoRepository;
 
 @RestController
@@ -26,45 +28,45 @@ public class MotoController {
 	private MotoRepository repository;
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping(value = "")
 	public List<Motorcycle> getAllMotorcycles() {
 		return repository.findAll();
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/{id}")
 	public Motorcycle getMotorcycleById(@PathVariable() ObjectId id) {
-		return repository.findBy_id(id);
+		return repository.findById(id);
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.PUT)
+	@PutMapping(value = "")
 	public void modifyMotorcycleBId(@Valid @RequestBody Motorcycle motorcycle) {
 		repository.save(motorcycle);
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@PostMapping(value = "")
 	public Motorcycle createMotorcycle(@Valid @RequestBody Motorcycle motorcycle) {
 		repository.save(motorcycle);
 		return motorcycle;
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/{query}", method = RequestMethod.GET)
+	@GetMapping(value = "/{query}")
 	public List<Motorcycle> searchMotorcycles(@PathVariable() String query) {
 		return repository.findByNameContainingIgnoreCase(query);
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "/{id}")
 	public Response deleteMotorcycle(@PathVariable() ObjectId id) {
 		Response response = new Response();
-		Motorcycle motorcycle = repository.findBy_id(id);
+		Motorcycle motorcycle = repository.findById(id);
 		if (motorcycle != null) {
 			repository.delete(motorcycle);
 			response.setTitle("ok");
-			response.setMessage("Ruta eliminada");
+			response.setMessage("Motocicleta eliminada");
 			response.setStatus(HttpStatus.OK);
 		} else {
 			response.setTitle("ERROR");

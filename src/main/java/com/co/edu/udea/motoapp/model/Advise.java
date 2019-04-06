@@ -6,18 +6,18 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class Advise {
 	
-	private String _uid;
+	private String uid;
 	private String message;
 	private String urlPicture;
 	private int score;
 	@JsonSerialize(using=ObjectIdSerializer.class)
-	private ObjectId _tripId;
+	private ObjectId tripId;
 	
-	public String get_uid() {
-		return _uid;
+	public String getUid() {
+		return uid;
 	}
-	public void set_uid(String _uid) {
-		this._uid = _uid;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	public String getMessage() {
 		return message;
@@ -31,11 +31,11 @@ public class Advise {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public ObjectId get_tripId() {
-		return _tripId;
+	public ObjectId getTripId() {
+		return tripId;
 	}
-	public void set_tripId(ObjectId _tripId) {
-		this._tripId = _tripId;
+	public void setTripId(ObjectId tripId) {
+		this.tripId = tripId;
 	}
 	public String getUrlPicture() {
 		return urlPicture;
