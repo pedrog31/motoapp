@@ -8,10 +8,11 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.co.edu.udea.motoapp.model.Advise;
@@ -30,7 +31,7 @@ public class AdviseController {
 	private TripRepository tripRepository;
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/tid={id}", method = RequestMethod.GET)
+	@GetMapping(value = "/tid={id}")
 	public Response getAdvisesByTrip(@PathVariable() String id) {
 		Response response = new Response();
 		try {
@@ -46,7 +47,7 @@ public class AdviseController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/uid={uid}", method = RequestMethod.GET)
+	@GetMapping(value = "/uid={uid}")
 	public Response getAdvisesByUser(@PathVariable() String uid) {
 		Response response = new Response();
 		try {
@@ -62,7 +63,7 @@ public class AdviseController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@PostMapping(value = "")
 	public Advise createAdvise(@Valid @RequestBody Advise advise) {
 		adviseRepository.save(advise);
 		Trip trip  = tripRepository.findById(advise.getTripId());

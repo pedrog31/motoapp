@@ -15,4 +15,6 @@ public interface TripRepository extends MongoRepository<Trip, String> {
 	List<Trip> findBytripPublic(boolean tripPublic);
 	
 	List<Trip> findByUids(String uids);
+
+	List<Trip> findByGuestUids(String uid);
 }

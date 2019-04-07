@@ -1,6 +1,5 @@
 package com.co.edu.udea.motoapp.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -22,7 +21,9 @@ public class Trip {
 	private int distance;
 	private float score;
 	private int scoreCount;
-	private ArrayList<String> uids;
+	private List<String> uids;
+	private List<String> guestUids;
+	
 	public ObjectId getId() {
 		return id;
 	}
@@ -83,10 +84,16 @@ public class Trip {
 	public void setScoreCount(int scoreCount) {
 		this.scoreCount = scoreCount;
 	}
-	public ArrayList<String> getUids() {
+	public List<String> getUids() {
 		return uids;
 	}
-	public void setUids(ArrayList<String> uids) {
+	public void setUids(List<String> uids) {
 		this.uids = uids;
-	}	
+	}
+	public List<String> getGuestUids() {
+		return guestUids;
+	}
+	public void setGuestUids(List<String> guestUids) {
+		this.guestUids = guestUids;
+	}
 }

@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/users")
@@ -84,11 +85,14 @@ public class UserController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@GetMapping(value = "/friends/{uid}")
-	public Iterable<User> findFriendsBelongToUser(@PathVariable() String uid) {
+	@GetMapping(value={"/friends", "/{uid}","/search/", "/{name}"})
+	public Iterable<User> findFriendsBelongToUser(@PathVariable() String uid,@PathVariable(required = false) String name) {
 		User myUser = this.getUserByUid(uid);
 		if (myUser.getFriends() != null) {
-			return repository.findAllById(myUser.getFriends());
+			Iterable<User> friends = repository.findAllById(myUser.getFriends());
+			return name == null ? friends : () -> StreamSupport.stream(friends.spliterator(), false)
+			        .filter(friend -> friend.getName().contains(name))
+			        .iterator();
 		}
 		return new ArrayList<>();
 	}

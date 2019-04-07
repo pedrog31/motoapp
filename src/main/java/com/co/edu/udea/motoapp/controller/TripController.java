@@ -8,10 +8,13 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.co.edu.udea.motoapp.model.Response;
@@ -30,37 +33,43 @@ public class TripController {
 	private UserRepository userRepository;
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping(value = "")
 	public List<Trip> getAllTrips() {
 		return repository.findAll();
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/public", method = RequestMethod.GET)
+	@GetMapping(value = "/public")
 	public List<Trip> getPublicTrips() {
 		return repository.findBytripPublic(true);
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/{id}")
 	public Trip getTripById(@PathVariable() ObjectId id) {
 		return repository.findById(id);
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.PUT)
+	@PutMapping(value = "")
 	public void modifyTrip(@Valid @RequestBody Trip trip) {
 		repository.save(trip);
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/user/{uid}", method = RequestMethod.GET)
+	@GetMapping(value = "/user/{uid}")
 	public List<Trip> getTripsBelongToUser(@PathVariable() String uid) {
 		return repository.findByUids(uid);
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@GetMapping(value = "/guest/{uid}")
+	public List<Trip> getTripsBelongToGuest(@PathVariable() String uid) {
+		return repository.findByGuestUids(uid);
+	}
+
+	@CrossOrigin(origins = "*")
+	@PostMapping(value = "")
 	public Trip createTrip(@Valid @RequestBody Trip trip) {
 		trip.setId(new ObjectId());
 		repository.save(trip);
@@ -73,7 +82,7 @@ public class TripController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "/{id}")
 	public Response deleteTrip(@PathVariable() ObjectId id) {
 		Response response = new Response();
 		Trip trip = repository.findById(id);
