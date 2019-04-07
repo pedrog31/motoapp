@@ -27,6 +27,7 @@ public class ChallengeController {
 			response.setStatus(HttpStatus.OK);
 			return response;
 		}catch (Exception e) {
+			e.printStackTrace();
 			response.setStatus(HttpStatus.BAD_REQUEST);
 			response.setMessage("there are no results.");
 			return response;
