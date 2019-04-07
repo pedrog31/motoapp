@@ -1,6 +1,8 @@
 package com.co.edu.udea.motoapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.StreamSupport;
 
@@ -36,9 +39,13 @@ public class UserController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@GetMapping(value = "/{uid}")
-	public User getUserByUid(@PathVariable() String uid) {
-		return repository.findByUid(uid);
+	@GetMapping(value = "/uid/{uid}")
+	public ResponseEntity<User> getUserByUid(@PathVariable() String uid) {
+		Optional<User> user = repository.findById(uid);
+		if (user.isPresent())
+			return new ResponseEntity<>(user.get(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@CrossOrigin(origins = "*")
@@ -87,9 +94,9 @@ public class UserController {
 	@CrossOrigin(origins = "*")
 	@GetMapping(value={"/friends", "/{uid}","/search/", "/{name}"})
 	public Iterable<User> findFriendsBelongToUser(@PathVariable() String uid,@PathVariable(required = false) String name) {
-		User myUser = this.getUserByUid(uid);
-		if (myUser != null && myUser.getFriends() != null) {
-			Iterable<User> friends = repository.findAllById(myUser.getFriends());
+		Optional<User> myUser = repository.findById(uid);
+		if (myUser.isPresent() && myUser.get().getFriends() != null) {
+			Iterable<User> friends = repository.findAllById(myUser.get().getFriends());
 			return name == null ? friends : () -> StreamSupport.stream(friends.spliterator(), false)
 			        .filter(friend -> friend.getName().contains(name))
 			        .iterator();
