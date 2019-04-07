@@ -88,7 +88,7 @@ public class UserController {
 	@GetMapping(value={"/friends", "/{uid}","/search/", "/{name}"})
 	public Iterable<User> findFriendsBelongToUser(@PathVariable() String uid,@PathVariable(required = false) String name) {
 		User myUser = this.getUserByUid(uid);
-		if (myUser.getFriends() != null) {
+		if (myUser != null && myUser.getFriends() != null) {
 			Iterable<User> friends = repository.findAllById(myUser.getFriends());
 			return name == null ? friends : () -> StreamSupport.stream(friends.spliterator(), false)
 			        .filter(friend -> friend.getName().contains(name))
