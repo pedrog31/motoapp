@@ -1,13 +1,16 @@
 package com.co.edu.udea.motoapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.co.edu.udea.motoapp.model.Response;
+import com.co.edu.udea.motoapp.model.Challenge;
 import com.co.edu.udea.motoapp.repositories.ChallengeRepository;
 
 @RestController
@@ -19,17 +22,12 @@ public class ChallengeController {
 
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "")
-	public Response getAllChallenges() {
-		Response response = new Response();
+	public ResponseEntity<List<Challenge>> getAllChallenges() {
 		try {
-			response.setData(challengeRepository.findAll());
-			response.setStatus(HttpStatus.OK);
-			return response;
+			return new ResponseEntity<>(challengeRepository.findAll(), HttpStatus.OK);
 		}catch (Exception e) {
 			e.printStackTrace();
-			response.setStatus(HttpStatus.BAD_REQUEST);
-			response.setMessage("there are no results.");
-			return response;
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }
