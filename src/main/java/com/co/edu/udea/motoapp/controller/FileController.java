@@ -29,17 +29,10 @@ public class FileController {
 	@CrossOrigin(origins = "*")
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Object> save(@RequestParam("file") MultipartFile file) {
+	public ResponseEntity<String> save(@RequestParam("file") MultipartFile file) {
 		try {
-			Response response = new Response();
 			String fileName = fileService.saveFile(file);
-			response.setData(fileName);
-			response.setMessage("Archivo creado correctamente");
-			response.setTitle("Exito");
-			response.setStatus(HttpStatus.ACCEPTED);
-			HttpHeaders responseHeaders = new HttpHeaders();
-			responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-			return new ResponseEntity<>(response, responseHeaders, HttpStatus.ACCEPTED);
+			return new ResponseEntity<>(fileName, HttpStatus.ACCEPTED);
 		} catch (Exception ex) {
 			String content = "<header><h2><span>Error guardando archivo</span></h2></header>";
 			ex.printStackTrace();
