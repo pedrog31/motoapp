@@ -45,7 +45,7 @@ public class UserController {
 		if (user.isPresent())
 			return new ResponseEntity<>(user.get(), HttpStatus.OK);
 		else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@CrossOrigin(origins = "*")
